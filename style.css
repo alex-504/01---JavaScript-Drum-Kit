@@ -1,7 +1,19 @@
 html {
   font-size: 10px;
-  background: url('https://picsum.photos/seed/picsum/1400/1600') bottom center;
+  background: url('https://media1.tenor.com/images/7ba77f56c339cace7d6f022b9307628c/tenor.gif?itemid=5730293') bottom center;
   background-size: cover;
+}
+
+h1 {
+   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+   color: rgb(0, 0, 0);
+   text-align: center;
+   margin-top: 10rem;
+   font-size: 40px;
+}
+p {
+  font-size: 20px;
+  text-align: center;
 }
 
 body,html {
@@ -49,3 +61,5 @@ kbd {
   letter-spacing: .1rem;
   color: #ffc600;
 }
+
+
