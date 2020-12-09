@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>JS Drum Kit</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   // the keys are mapped as http://keycode.info/
@@ -58,31 +60,31 @@
   <audio data-key="75" src="sounds/tom.wav"></audio>
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
-<script>
-  // listen to the key push down, reads the keyCode, stops the function running if there is no audio and runs the functions if there is audio equivalent
-  window.addEventListener('keydown', function (e) {
-    // console.log(e.keyCode);
-    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-    if(!audio) return; // stops the function from running altogether
-    audio.currentTime = 0; // rewind to the start
-    audio.play();
-    key.classList.add('playing');
-  });
+  <script>
+    // This function is called once the key is triggered 
+    function playSound(e) {
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+      if (!audio) return; // stops the function from running altogether
+      audio.currentTime = 0; // rewind to the start
+      audio.play();
+      key.classList.add('playing');
+    }
+    // fixes the button from keeping with the action triggered forever. It goes back after 0.07ms(specified in CSS Stylesheet)
+    function removeTransition(e) {
+      if (e.propertyName !== 'transform') return; //skip if it is not a transform
+      console.log(e.propertyName);
+      this.classList.remove('playing');
+    }
+    
+    //iterate over the each keys trigerred(listen to key events)
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    window.addEventListener('keydown', playSound);
 
-  // if there event is triggered, this function will stop if after 0.07 and return the keys to initial state (no css added to its style)
-  function removeTransition(e) {
-    if (e.propertyName !== 'transform') return; //skip if it is not a transform
-    console.log(e.propertyName);
-    this.classList.remove ('playing');
-  };
-
-  //iterate over the each keys trigerred
-  const keys = document.querySelectorAll('.key');
-  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
-
-</script>
+  </script>
 
 
 </body>
+
 </html>
